@@ -14,8 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const taxResult = document.getElementById('taxResult');
   
     const validateInput = (input, errorElement) => {
+
       const value = input.value.trim();
-      const isValid = !value || /^\d+(\.\d+)?$/.test(value);
+      const isValid = !value || /^[0-9]+(\.[0-9]+)?$/.test(value);
   
       if (!isValid) {
         input.classList.add('is-invalid');
@@ -29,10 +30,22 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   
     const validateForm = () => {
+      
       const grossIncomeValid = validateInput(grossIncomeInput, document.getElementById('grossIncomeError'));
       const extraIncomeValid = validateInput(extraIncomeInput, document.getElementById('extraIncomeError'));
       const deductionsValid = validateInput(deductionsInput, document.getElementById('deductionsError'));
+     
       const ageGroupValid = ageGroupSelect.value !== '';
+     
+
+      if (grossIncomeInput.value.trim() == '' || !grossIncomeValid) {
+        grossIncomeInput.classList.add('is-invalid');
+        document.getElementById('grossIncomeError').style.display = 'block';
+        //grossIncomeValid = false;
+      } else {
+        grossIncomeInput.classList.remove('is-invalid');
+        document.getElementById('grossIncomeError').style.display = 'none';
+      }
   
       if (!ageGroupValid) {
         ageGroupSelect.classList.add('is-invalid');
@@ -42,11 +55,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('ageGroupError').style.display = 'none';
       }
   
-      return grossIncomeValid && extraIncomeValid && deductionsValid && ageGroupValid;
+      return  grossIncomeValid && extraIncomeValid && deductionsValid && ageGroupValid;
+  
     };
   
     const calculateTax = () => {
-      const grossIncome = parseFloat(grossIncomeInput.value) || 0;
+      const grossIncome = parseFloat(grossIncomeInput.value);
       const extraIncome = parseFloat(extraIncomeInput.value) || 0;
       const deductions = parseFloat(deductionsInput.value) || 0;
       const ageGroup = ageGroupSelect.value;
