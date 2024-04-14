@@ -1,50 +1,11 @@
-/* 
-.input-container {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .error-icon {
-    display: none;
-    padding: 0 1px ;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: red;
-    cursor: pointer;
-    border-radius: 100%;
-    border: 1px solid red;
-    
-  }
-  
-  .error-icon::after {
-    content: "!";
-    font-weight: bold;
-    
-  }
-  
-  .error-icon:hover::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: red;
-    color: white;
-    padding: 5px;
-    border-radius: 4px;
-    white-space: nowrap;
-  } */
+.error-icon {
+  display: none;
+  color : red;
+}
+.invalid-feedback {
+  display: none;
+}
 
-  .error-icon {
-    display: none;
-    color : red;
-  }
-
-  .invalid-feedback {
-    display: none;
-  }
-  
-  .form-control.is-invalid ~ .invalid-feedback {
-    display: block;
-  }
+.form-control.is-invalid ~ .invalid-feedback {
+  display: block;
+}
